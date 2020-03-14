@@ -13,18 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::get('/info', function () {
-    return 'INFORMATION';
-});
+Route::group(
+    ['prefix' => 'news',
+    'namespace' => 'News',
+    'as' => 'news.'],
+    function () {
+        Route::get('/', 'NewsController@index')->name('index');
+        Route::get('/categories/{id}', 'NewsController@newsCategories')->name('newsCategories');
+        Route::get('/singleNews/{id}', 'NewsController@singleNews')->name('singleNews');
+    }
+);
 
-Route::get('/news', function () {
-    return 'NEWS';
-});
+Route::get('/auth', 'Auth\AuthController@index')->name('auth.index');
 
-Route::get('/singlenews', function () {
-    return 'SINGLE NEWS';
-});
+Route::get('/admin/create', 'Admin\AdminController@create')->name('admin.create');
