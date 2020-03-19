@@ -9,15 +9,7 @@ class NewsController extends Controller
 {
 
     public function index() {
-        $html = 'News categories:<br>';
-        foreach ($this->categories as $value) {
-            $route = route('news.newsCategories', $value['id']);
-            $html .= <<<php
-                    <a href="$route">{$value['name']}</a><br>
-php;
-
-        };
-        return $html;
+        return view('news/categories', ['categories' => $this->categories]);
     }
 
     public function newsCategories($id) {
@@ -34,25 +26,14 @@ php;
                 break;
             }
         };
-        $html = "News categories {$categoriesName}:<br>";
-        foreach ($news as $value) {
-            $route = route('news.singleNews', $value['id']);
-            $html .= <<<php
-                    <a href="$route">{$value['title']}</a><br>
-php;
-        };
-        return $html;
+        return view('news/categoriesNews', ['news' => $news, 'categoriesName' => $categoriesName]);
     }
 
     public function singleNews($id) {
-        $html = '';
         foreach ($this->news as $value) {
           if ($value['id'] == $id) {
-              $html = <<<php
-                <h3>{$value['title']}</h3>
-php;
+              return view('news/singleNews', ['news' => $value]);
           }
         };
-        return $html;
     }
 }
