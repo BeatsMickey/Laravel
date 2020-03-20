@@ -9,6 +9,7 @@ body {
 }
 a{
     text-decoration: none;
+    color: white;
 }
 header,footer{
     display: flex;
@@ -16,8 +17,19 @@ header,footer{
     color: #fafafa;
     padding: 30px 80px;
 }
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+.container{
+    width: 1140px;
+    margin: 0 auto;
+}
 .menu{
     display: flex;
+}
+ul{
+    list-style-type: none;
 }
 li{
     margin-left: 30px;
@@ -28,15 +40,13 @@ li{
 a:hover{
     color: red;
 }
-.container {
+.main {
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
 .content {
     flex: 1 0 auto;
-    width: 1140px;
-    margin: 0 auto;
 }
 .content_block{
     display: flex;
