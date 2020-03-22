@@ -2,19 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
+/*
+ * Главный роут
+ */
 Route::get('/', 'HomeController@index')->name('home.index');
 
+/*
+ * Роуты для новостей
+ */
 Route::group(
     ['prefix' => 'news',
     'namespace' => 'News',
@@ -26,6 +22,17 @@ Route::group(
     }
 );
 
+/*
+ * Роуты к авторизации
+ */
 Route::get('/auth', 'Auth\AuthController@index')->name('auth.index');
 
+/*
+ * Роуты к админке
+ */
 Route::get('/admin/create', 'Admin\AdminController@create')->name('admin.create');
+
+/*
+ * Роут к фидбэку
+ */
+Route::match(['post','get'],'/feedback', 'Feedback\FeedbackController@index')->name('feedback');
