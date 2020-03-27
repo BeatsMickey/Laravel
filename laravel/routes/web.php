@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -28,11 +29,27 @@ Route::group(
 Route::get('/auth', 'Auth\AuthController@index')->name('auth.index');
 
 /*
- * Роуты к админке
+ * Роуты к админке новостей
  */
-Route::get('/admin/create', 'Admin\AdminController@create')->name('admin.create');
+Route::group([
+    'prefix' => 'admin/news',
+    'namespace' => 'Admin',
+    'as' => 'admin.news.'],
+    function() {
+    Route::get('/', "NewsController@index")->name('index');
+    Route::match(['get', 'post'],'/create', 'NewsController@create')->name('create');
+    Route::match(['get', 'post/{id}'],'/update', 'NewsController@update')->name('update');
+    Route::get('/delete/{id}', 'NewsController@delete')->name('delete');
+
+});
 
 /*
  * Роут к фидбэку
  */
 Route::match(['post','get'],'/feedback', 'Feedback\FeedbackController@index')->name('feedback');
+
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
+
+

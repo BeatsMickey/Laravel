@@ -23,7 +23,8 @@ class FeedbackSeeder extends Seeder
         for($i = 0; $i <= 100; $i++) {
             $data[] = [
                 'review' => $faker->realText(),
-                'user_id' => $faker->numberBetween(1,11)
+                'name' => $faker->firstName,
+                'email' => $faker->safeEmail,
             ];
         }
 

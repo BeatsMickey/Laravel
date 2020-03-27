@@ -12,7 +12,7 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('news_categories')->insert($this->getDataCategories());
+        DB::table('categories')->insert($this->getDataCategories());
         DB::table('news')->insert($this->getDataNews());
     }
 
