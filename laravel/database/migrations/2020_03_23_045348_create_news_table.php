@@ -13,7 +13,7 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('news_categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50)->unique();
             $table->string('description');
@@ -31,7 +31,7 @@ class CreateNewsTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 
-            $table->foreignId('categories_id')->references('id')->on('news_categories');
+            $table->foreignId('categories_id')->references('id')->on('categories');
         });
     }
 
