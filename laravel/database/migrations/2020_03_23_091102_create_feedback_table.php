@@ -16,10 +16,10 @@ class CreateFeedbackTable extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->text('review');
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent()->index();
             $table->timestamp('updated_at')->useCurrent();
-
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
         });
     }
 
