@@ -14,4 +14,5 @@
     @empty
         <p>Новостей в данной категории нет</p>
     @endforelse
+    {{$news->links()}}
 @endsection

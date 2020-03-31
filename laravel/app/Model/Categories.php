@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    public static function getActiveCategories() {
-        return Categories::all()->where('is_active', '1');
+    protected $fillable = [
+        'title',
+        'description',
+        'is_active',
+    ];
+
+    public static function getActiveCategories(int $numberPerPage) {
+        return Categories::query()->where('is_active', '1')->paginate($numberPerPage);
     }
 }

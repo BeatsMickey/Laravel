@@ -11,12 +11,12 @@ class NewsController extends Controller
 {
 
     public function index() {
-        $categories = Categories::getActiveCategories();
+        $categories = Categories::getActiveCategories(5);
         return view('news/categories', ['categories' => $categories]);
     }
 
     public function newsCategories($id) {
-        $news = News::getActiveNewsByCategoriesId($id);
+        $news = News::getActiveNewsByCategoriesId($id, 5);
         $category = Categories::find($id);
         return view('news/categoriesNews', ['news' => $news, 'category' => $category]);
     }

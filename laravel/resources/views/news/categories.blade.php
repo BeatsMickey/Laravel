@@ -13,4 +13,5 @@
     @empty
         <p>Новостей нет</p>
     @endforelse
+    {{$categories->links()}}
 @endsection
