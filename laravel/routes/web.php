@@ -37,16 +37,22 @@ Route::group([
     'as' => 'admin.news.'],
     function() {
     Route::get('/', "NewsController@index")->name('index');
-    Route::match(['get', 'post'],'/create', 'NewsController@create')->name('create');
-    Route::match(['get', 'post/{id}'],'/update', 'NewsController@update')->name('update');
+    Route::get('/create', 'NewsController@create')->name('create');
+    Route::get('/update/{id}', 'NewsController@update')->name('update');
+    Route::post('/save_news/{id}', 'NewsController@saveNews')->name('saveNews');
     Route::get('/delete/{id}', 'NewsController@delete')->name('delete');
-
+    Route::get('/categories', 'NewsController@categories')->name('categories');
+    Route::get('/create_categories', 'NewsController@createCategories')->name('createCategories');
+    Route::get('/update_categories/{id}', 'NewsController@updateCategories')->name('updateCategories');
+    Route::get('/delete_categories/{id}', 'NewsController@deleteCategories')->name('deleteCategories');
+    Route::post('/save_categories/{id}', 'NewsController@saveCategories')->name('saveCategories');
 });
 
 /*
- * Роут к фидбэку
+ * Роуты к фидбэку
  */
-Route::match(['post','get'],'/feedback', 'Feedback\FeedbackController@index')->name('feedback');
+Route::get('/feedback', 'Feedback\FeedbackController@index')->name('feedback');
+Route::post('/feedback_send', 'Feedback\FeedbackController@feedbackSend')->name('feedbackSend');
 
 //Auth::routes();
 //

@@ -28,6 +28,7 @@ class CreateNewsTable extends Migration
             $table->text('text');
             $table->string('description');
             $table->boolean('is_active');
+            $table->date('publication_date');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
 
