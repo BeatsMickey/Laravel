@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\model\News;
 
+
 class NewsController extends Controller
 {
     public function index()
@@ -44,24 +45,25 @@ class NewsController extends Controller
     }
 
 
-    public function saveNews($id) {
+
+    public function saveNews(AdminNewsEditRequest $request, $id) {
         if ($id) {
             $model = News::find($id);
         } else {
             $model = new News();
         }
-        $request = new AdminNewsEditRequest();
+
         $this->save($request, $model);
         return redirect()->route("admin.news.create");
     }
 
-    public function saveCategories($id) {
+
+    public function saveCategories(AdminCategoriesEditRequest $request, $id) {
         if ($id) {
             $model = Categories::find($id);
         } else {
             $model = new Categories();
         }
-        $request = new AdminCategoriesEditRequest();
         $this->save($request, $model);
         return redirect()->route("admin.news.createCategories");
     }
