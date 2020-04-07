@@ -25,9 +25,10 @@
     <div class="container header">
         <a href="/">LOGO</a>
         <ul class="menu">
-            <li><a href="{{ route('news.index') }}" class="menu_link">Категории новостей</a></li>
-            <li><a href="{{ route('auth.index') }}" class="menu_link">Авторизация</a></li>
-            <li><a href="{{ route('feedback') }}" class="menu_link">Форма обратной связи</a></li>
+            <li><a href="{{ route('admin.news.index') }}" class="menu_link">Новости</a></li>
+            <li><a href="{{ route('admin.news.create') }}" class="menu_link">Создать новость</a></li>
+            <li><a href="{{ route('admin.news.categories') }}" class="menu_link">Категории</a></li>
+            <li><a href="{{ route('admin.news.createCategories') }}" class="menu_link">Создать категории</a></li>
         </ul>
     </div>
 </header>
