@@ -12,7 +12,6 @@ use App\model\News;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 
-
 class NewsController extends Controller
 {
     public function index()
@@ -47,25 +46,24 @@ class NewsController extends Controller
     }
 
 
-
-    public function saveNews(AdminNewsEditRequest $request, $id) {
+    public function saveNews($id) {
         if ($id) {
             $model = News::find($id);
         } else {
             $model = new News();
         }
-
+        $request = new AdminNewsEditRequest();
         $this->save($request, $model);
         return redirect()->route("admin.news.create");
     }
 
-
-    public function saveCategories(AdminCategoriesEditRequest $request, $id) {
+    public function saveCategories($id) {
         if ($id) {
             $model = Categories::find($id);
         } else {
             $model = new Categories();
         }
+        $request = new AdminCategoriesEditRequest();
         $this->save($request, $model);
         return redirect()->route("admin.news.createCategories");
     }
