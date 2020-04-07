@@ -9,6 +9,8 @@ use App\model\Categories;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\model\News;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 
 class NewsController extends Controller
