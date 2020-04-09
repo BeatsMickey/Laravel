@@ -1,4 +1,4 @@
-@extends('admin.main_admin')
+@extends('layouts.main')
 
 @section('title')
     Новости
