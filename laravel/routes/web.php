@@ -31,15 +31,30 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 /*
- * Роуты к админке новостей
+ * Авторизация google
  */
+Route::group([
+    'prefix' => 'google',
+    'namespace' => 'Google',
+    'as' => 'google.',
+], function () {
+    Route::get('/redirect', "LoginController@loginGoogle")->name('redirect');
+    Route::get('/callback', "LoginController@responseGoogle")->name('callback');
+});
 
+
+/*
+ * Роуты к админке
+ */
 Route::group([
     'prefix' => 'admin/',
     'namespace' => 'Admin',
     'as' => 'admin.',
     'middleware' => 'accessToAdmin'],
     function() {
+        /*
+        * Новости
+        */
         Route::group([
             'prefix' => 'news',
             'as' => 'news.',
@@ -55,6 +70,18 @@ Route::group([
             Route::get('/delete_categories/{id}', 'NewsController@deleteCategories')->name('deleteCategories');
             Route::post('/save_categories/{id}', 'NewsController@saveCategories')->name('saveCategories');
         });
+        /*
+        * Парсер
+        */
+        Route::group([
+            'prefix' => 'parser',
+            'as' => 'parser.',
+        ], function () {
+            Route::post('/', "ParseController@index")->name('index');
+        });
+        /*
+        * Пользователи
+        */
         Route::group([
             'prefix' => 'users',
             'as' => 'users.',
@@ -63,6 +90,7 @@ Route::group([
             Route::get('/update/{id}', "UsersController@update")->name('update');
             Route::post('/save/{id}', "UsersController@save")->middleware('validateUpdateUser')->name('save');
         });
+
     });
 /*
  * Роуты к фидбэку
