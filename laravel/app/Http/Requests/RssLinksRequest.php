@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AdminCategoriesEditRequest extends FormRequest
+class RssLinksRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,13 @@ class AdminCategoriesEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
+            'link' => [
                 'required',
-                'min:5',
-                'max:55',
-                Rule::unique('categories', 'title')->ignore($this->id)
+                'max:255',
+                'URL',
+                Rule::unique('rss_links', 'link')->ignore($this->id)
             ],
-            'description' => 'required|max:255',
-            'is_active' => 'boolean',
+            'categories_id' => 'required|exists:categories,id',
         ];
     }
 }
