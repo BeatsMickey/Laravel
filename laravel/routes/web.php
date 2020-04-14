@@ -80,6 +80,19 @@ Route::group([
             Route::post('/', "ParseController@index")->name('index');
         });
         /*
+        * RSS ссылки
+        */
+        Route::group([
+            'prefix' => 'rss',
+            'as' => 'rss.',
+        ], function () {
+            Route::get('/', "RSSLinksController@index")->name('index');
+            Route::get('/create', "RSSLinksController@create")->name('create');
+            Route::get('/update/{id}', "RSSLinksController@update")->name('update');
+            Route::get('/delete/{id}', 'RSSLinksController@delete')->name('delete');
+            Route::post('/save/{id}', "RSSLinksController@save")->name('save');
+        });
+        /*
         * Пользователи
         */
         Route::group([

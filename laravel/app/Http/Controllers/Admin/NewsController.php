@@ -44,8 +44,6 @@ class NewsController extends Controller
         return view('admin.news.createCategories', ['model' => $categories]);
     }
 
-
-
     public function saveNews(AdminNewsEditRequest $request, $id) {
         if ($id) {
             $model = News::find($id);
@@ -56,7 +54,6 @@ class NewsController extends Controller
         $this->save($request, $model);
         return redirect()->route("admin.news.create");
     }
-
 
     public function saveCategories(AdminCategoriesEditRequest $request, $id) {
         if ($id) {

@@ -12,7 +12,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @if($ckeditor)
+        <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('js/ckeditor_option.js') }}" defer></script>
+    @endif
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -39,8 +42,11 @@
                             Парсер
                         </a>
                         <form id="parser-form" action="{{ route('admin.parser.index') }}" method="POST" style="display: none;">
+                            @csrf
                         </form>
                     </li>
+                    <li><a href="{{ route('admin.rss.index') }}" class="menu_link">RSS ссылки</a></li>
+                    <li><a href="{{ route('admin.rss.create') }}" class="menu_link">Добавить RSS</a></li>
                 @else
                     <li><a href="{{ route('news.index') }}" class="menu_link">Категории новостей</a></li>
                     <li><a href="{{ route('feedback') }}" class="menu_link">Форма обратной связи</a></li>

@@ -17,8 +17,9 @@ class LoginController extends Controller
         try {
             $user = Socialite::driver('google')->user();
         } catch (\Exception $e) {
-            return redirect('/login');
+            return redirect()->route('home.index');
         }
+
         $systemUser = $getUser->getUserBySocId($user, 'google');
         auth()->login($systemUser, true);
         return redirect()->route('home.index');
