@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class AdminNewsEditRequest extends FormRequest
 {
@@ -25,12 +24,7 @@ class AdminNewsEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => [
-                'required',
-                'min:5',
-                'max:55',
-                Rule::unique('news', 'title')->ignore($this->id)
-            ],
+            'title' => 'required|min:5|max:55|unique:news',
             'text' => 'required',
             'description' => 'required|max:255',
             'is_active' => 'boolean',

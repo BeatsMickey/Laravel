@@ -45,25 +45,24 @@ class NewsController extends Controller
     }
 
 
-
-    public function saveNews(AdminNewsEditRequest $request, $id) {
+    public function saveNews($id) {
         if ($id) {
             $model = News::find($id);
         } else {
             $model = new News();
         }
-
+        $request = new AdminNewsEditRequest();
         $this->save($request, $model);
         return redirect()->route("admin.news.create");
     }
 
-
-    public function saveCategories(AdminCategoriesEditRequest $request, $id) {
+    public function saveCategories($id) {
         if ($id) {
             $model = Categories::find($id);
         } else {
             $model = new Categories();
         }
+        $request = new AdminCategoriesEditRequest();
         $this->save($request, $model);
         return redirect()->route("admin.news.createCategories");
     }
@@ -90,4 +89,6 @@ class NewsController extends Controller
         $categories->save();
         return redirect()->route("admin.news.categories");
     }
+
+
 }

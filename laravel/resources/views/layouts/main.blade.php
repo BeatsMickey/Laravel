@@ -32,24 +32,13 @@
                     <li><a href="{{ route('admin.news.categories') }}" class="menu_link">Категории</a></li>
                     <li><a href="{{ route('admin.news.createCategories') }}" class="menu_link">Создать категорию</a></li>
                     <li><a href="{{ route('admin.users.index') }}" class="menu_link">Пользователи</a></li>
-                    <li>
-                        <a class="menu_link" href=""
-                           onclick="event.preventDefault();
-                                                     document.getElementById('parser-form').submit();">
-                            Парсер
-                        </a>
-                        <form id="parser-form" action="{{ route('admin.parser.index') }}" method="POST" style="display: none;">
-                        </form>
-                    </li>
                 @else
                     <li><a href="{{ route('news.index') }}" class="menu_link">Категории новостей</a></li>
                     <li><a href="{{ route('feedback') }}" class="menu_link">Форма обратной связи</a></li>
-
                 @endif
 
                 @guest
                     <li><a class="menu_link" href="{{ route('login') }}">Войти</a></li>
-                    <li><a href="{{ route('google.redirect') }}" class="menu_link">Google</a></li>
                     @if (Route::has('register'))
                         <li><a class="menu_link" href="{{ route('register') }}">Зарегестрироваться</a></li>
                     @endif

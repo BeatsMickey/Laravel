@@ -14,9 +14,6 @@ class Users extends Model
         'email',
         'password',
         'is_admin',
-        'id_soc',
-        'type_auth',
-        'avatar',
     ];
 
     public static function getAllUsers(int $numberPerPage) {
